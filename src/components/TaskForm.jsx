@@ -1,11 +1,8 @@
-import { useContext, useState } from "react";
-import { Context } from "../context/storeProvider";
+import { useState } from "react";
 import '../style/TaskForm.css'
 
-const TaskForm = () => {
+const TaskForm = ({ addTask, setOpenModal }) => {
     const [ newTaskValue, setNewTaskValue ] = useState('');
-
-    const { addTask, setOpenModal } = useContext(Context);
 
     const onChange = (e) => {
         setNewTaskValue(e.target.value);

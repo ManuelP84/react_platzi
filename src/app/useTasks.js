@@ -1,9 +1,7 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const Context = createContext();
-
-const StoreProvider = ({children}) => {
+const useTasks = () => {
   const {
     item: tasks,
     saveItem: setTasks,
@@ -40,10 +38,10 @@ const StoreProvider = ({children}) => {
     newTasks.push({
       isDone: false,
       id: Math.random(100000),
-      description
-    })
+      description,
+    });
     setTasks(newTasks);
-  }
+  };
 
   const deleteTask = (id) => {
     const newTasks = tasks.filter((task) => task.id !== id);
@@ -55,27 +53,20 @@ const StoreProvider = ({children}) => {
     // setTasks(newTasks);
   };
 
-  return (
-    <Context.Provider
-      value={{
-        loading,
-        error,
-        totalTasks,
-        completedTasks,
-        searchValue,
-        setSearchValue,
-        searchTasks,
-        toogleDone,
-        deleteTask,
-        openModal,
-        setOpenModal, 
-        addTask,
-      
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  return {
+    loading,
+    error,
+    totalTasks,
+    completedTasks,
+    searchValue,
+    setSearchValue,
+    searchTasks,
+    toogleDone,
+    deleteTask,
+    openModal,
+    setOpenModal,
+    addTask,
+  };
 };
 
-export { Context, StoreProvider };
+export { useTasks };
