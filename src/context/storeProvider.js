@@ -3,7 +3,7 @@ import { useLocalStorage } from "./useLocalStorage";
 
 const Context = createContext();
 
-const StoreProvider = (props) => {
+const StoreProvider = ({children}) => {
   const {
     item: tasks,
     saveItem: setTasks,
@@ -73,7 +73,7 @@ const StoreProvider = (props) => {
       
       }}
     >
-      {props.children}
+      {children}
     </Context.Provider>
   );
 };

@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import "../App.css";
 import { CreateTaskButton } from "../components/CreateTaskButton";
+import { TaskHeader } from "../components/TaskHeader";
 import { Modal } from "../components/Modal";
-import { TaskCounter } from "../components/TaskCounter";
 import { TaskForm } from "../components/TaskForm";
 import { TaskItem } from "../components/TaskItem";
 import { TaskList } from "../components/TaskList";
-import { TaskSearch } from "../components/TaskSearch";
 import { Context } from "../context/storeProvider";
+import {TaskCounter} from '../components/TaskCounter'
+import {TaskSearch} from '../components/TaskSearch'
 
 const AppUI = () => {
   const {
@@ -18,12 +19,25 @@ const AppUI = () => {
     deleteTask,
     openModal,
     setOpenModal,
+    totalTasks, 
+    completedTasks,
+    searchValue, 
+    setSearchValue
   } = useContext(Context);
 
   return (
     <div className="App">
-      <TaskCounter />
-      <TaskSearch />
+      <TaskHeader>
+        <TaskCounter
+        totalTasks={totalTasks} 
+        completedTasks={completedTasks}
+        />
+        <TaskSearch
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue}
+        />
+      </TaskHeader>
+
       <TaskList>
         {error && <p>Hubo un error...</p>}
         {loading && <p>Loading...</p>}

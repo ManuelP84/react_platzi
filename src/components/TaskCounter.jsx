@@ -1,5 +1,3 @@
-import React, { useContext } from "react";
-import { Context } from "../context/storeProvider";
 import '../style/TaskCounter.css';
 
 /* const style = {
@@ -7,9 +5,8 @@ import '../style/TaskCounter.css';
   color: 'white'
 } */
 
-const TaskCounter = () => {
+const TaskCounter = ({totalTasks, completedTasks}) => {
 
-  const {totalTasks, completedTasks} = useContext(Context);
   return (
     <>
       <h2 className="taskCounter">You have completed {completedTasks} from {totalTasks} tasks!</h2>

@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
-import { Context } from "../context/storeProvider";
 import "../style/TaskSearch.css"
 
-const TaskSearch = () => {
+const TaskSearch = ({searchValue, setSearchValue}) => {
 
-  const {searchValue, setSearchValue} = useContext(Context);
   const onChangeText = (e) => {
     setSearchValue(e.target.value);
   }
