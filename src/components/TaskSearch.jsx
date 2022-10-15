@@ -1,6 +1,6 @@
 import "../style/TaskSearch.css"
 
-const TaskSearch = ({searchValue, setSearchValue}) => {
+const TaskSearch = ({searchValue, setSearchValue, loading}) => {
 
   const onChangeText = (e) => {
     setSearchValue(e.target.value);
@@ -13,6 +13,7 @@ const TaskSearch = ({searchValue, setSearchValue}) => {
       placeholder="Cebolla" 
       value={searchValue}
       onChange={(e) => onChangeText(e)}
+      disabled={loading}
       />
     </>
   );

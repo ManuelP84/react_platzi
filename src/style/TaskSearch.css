@@ -18,6 +18,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
   }
+
+  .TaskSearch:disabled {
+    opacity: 25%;
+  }
   
   .TaskSearch:focus {
     outline-color: #61DAFA;

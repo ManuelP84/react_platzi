@@ -5,11 +5,11 @@ import '../style/TaskCounter.css';
   color: 'white'
 } */
 
-const TaskCounter = ({totalTasks, completedTasks}) => {
+const TaskCounter = ({totalTasks, completedTasks, loading}) => {
 
   return (
     <>
-      <h2 className="taskCounter">You have completed {completedTasks} from {totalTasks} tasks!</h2>
+      <h2 className={`taskCounter ${!!loading && 'taskCounter--loading'}`}>You have completed {completedTasks} from {totalTasks} tasks!</h2>
     </>
   );
 };

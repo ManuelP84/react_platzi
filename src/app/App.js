@@ -6,15 +6,13 @@ import { Modal } from "../components/Modal";
 import { TaskForm } from "../components/TaskForm";
 import { TaskItem } from "../components/TaskItem";
 import { TaskList } from "../components/TaskList";
-import {TaskCounter} from '../components/TaskCounter'
-import {TaskSearch} from '../components/TaskSearch'
+import { TaskCounter } from "../components/TaskCounter";
+import { TaskSearch } from "../components/TaskSearch";
 import { TasksError } from "../components/TasksError";
 import { TasksLoading } from "../components/TasksLoading";
 import { NewTask } from "../components/NewTask";
 
-
 function App() {
-
   const {
     error,
     loading,
@@ -23,22 +21,22 @@ function App() {
     deleteTask,
     openModal,
     setOpenModal,
-    totalTasks, 
+    totalTasks,
     completedTasks,
-    searchValue, 
+    searchValue,
     setSearchValue,
-    addTask
+    addTask,
   } = useTasks();
   return (
     <div className="App">
-      <TaskHeader>
+      <TaskHeader loading={loading}>
         <TaskCounter
-        totalTasks={totalTasks} 
-        completedTasks={completedTasks}
+          totalTasks={totalTasks}
+          completedTasks={completedTasks}
         />
         <TaskSearch
-        searchValue={searchValue} 
-        setSearchValue={setSearchValue}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
       </TaskHeader>
 
@@ -48,10 +46,12 @@ function App() {
         totalTasks={totalTasks}
         loading={loading}
         searchTasks={searchTasks}
-        onError={() => <TasksError/>}
-        onLoading={() => <TasksLoading/>}
-        onNewtask={() => <NewTask/>}
-        onEmptySearchResults={(searchResult) => <p>There is no results for {searchResult}</p>}
+        onError={() => <TasksError />}
+        onLoading={() => <TasksLoading />}
+        onNewtask={() => <NewTask />}
+        onEmptySearchResults={(searchResult) => (
+          <p>There is no results for {searchResult}</p>
+        )}
         render={(task) => (
           <TaskItem
             key={task.id}
@@ -60,7 +60,7 @@ function App() {
             toogleDone={() => toogleDone(task.id)}
             deleteTask={() => deleteTask(task.id)}
           />
-        )}  
+        )}
       >
         {/* {task => (
           <TaskItem
@@ -72,21 +72,15 @@ function App() {
           
           />
         )}  */}
-      </TaskList>     
-      
+      </TaskList>
 
       {openModal && (
         <Modal>
-          <TaskForm
-          addTask={addTask}
-          setOpenModal={setOpenModal}
-          />
+          <TaskForm addTask={addTask} setOpenModal={setOpenModal} />
         </Modal>
       )}
 
-      <CreateTaskButton 
-        setOpenModal={setOpenModal}
-      />
+      <CreateTaskButton setOpenModal={setOpenModal} />
     </div>
   );
 }
