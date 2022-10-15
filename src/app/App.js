@@ -8,6 +8,10 @@ import { TaskItem } from "../components/TaskItem";
 import { TaskList } from "../components/TaskList";
 import {TaskCounter} from '../components/TaskCounter'
 import {TaskSearch} from '../components/TaskSearch'
+import { TasksError } from "../components/TasksError";
+import { TasksLoading } from "../components/TasksLoading";
+import { NewTask } from "../components/NewTask";
+
 
 function App() {
 
@@ -38,12 +42,17 @@ function App() {
         />
       </TaskHeader>
 
-      <TaskList>
-        {error && <p>Hubo un error...</p>}
-        {loading && <p>Loading...</p>}
-        {!loading && !error && <p>Create a new task</p>}
-
-        {searchTasks.map((task) => (
+      <TaskList
+        error={error}
+        searchValue={searchValue}
+        totalTasks={totalTasks}
+        loading={loading}
+        searchTasks={searchTasks}
+        onError={() => <TasksError/>}
+        onLoading={() => <TasksLoading/>}
+        onNewtask={() => <NewTask/>}
+        onEmptySearchResults={(searchResult) => <p>There is no results for {searchResult}</p>}
+        render={(task) => (
           <TaskItem
             key={task.id}
             description={task.description}
@@ -51,8 +60,21 @@ function App() {
             toogleDone={() => toogleDone(task.id)}
             deleteTask={() => deleteTask(task.id)}
           />
-        ))}
-      </TaskList>
+        )}  
+      >
+        {/* {task => (
+          <TaskItem
+            key={task.id}
+            description={task.description}
+            isDone={task.isDone}
+            toogleDone={() => toogleDone(task.id)}
+            deleteTask={() => deleteTask(task.id)}
+          
+          />
+        )}  */}
+      </TaskList>     
+      
+
       {openModal && (
         <Modal>
           <TaskForm
