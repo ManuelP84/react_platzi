@@ -9,7 +9,7 @@ const TaskList = (props) => {
             {props.loading && props.onLoading()}
             {!props.loading && !props.error && !props.totalTasks && props.onNewtask()}
             {!!props.totalTasks && !props.loading && !props.searchTasks.length && props.onEmptySearchResults(props.searchValue)}
-            {props.searchTasks.map(renderFunction)}
+            {(!props.loading && !props.error) && props.searchTasks.map(renderFunction)}
         </section>
     )
 }

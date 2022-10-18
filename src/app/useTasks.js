@@ -5,6 +5,7 @@ const useTasks = () => {
   const {
     item: tasks,
     saveItem: setTasks,
+    sincronize: sincronizeTasks,
     loading,
     error,
   } = useLocalStorage("TASKS_V1", []); // Custom hook
@@ -66,6 +67,7 @@ const useTasks = () => {
     openModal,
     setOpenModal,
     addTask,
+    sincronizeTasks,
   };
 };
 

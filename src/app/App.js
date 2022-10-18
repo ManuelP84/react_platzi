@@ -11,6 +11,7 @@ import { TaskSearch } from "../components/TaskSearch";
 import { TasksError } from "../components/TasksError";
 import { TasksLoading } from "../components/TasksLoading";
 import { NewTask } from "../components/NewTask";
+import { ChangeAlertWithStorageListener } from "../components/ChangeAlert/ChangeAlert"
 
 function App() {
   const {
@@ -26,6 +27,7 @@ function App() {
     searchValue,
     setSearchValue,
     addTask,
+    sincronizeTasks,
   } = useTasks();
   return (
     <div className="App">
@@ -73,14 +75,17 @@ function App() {
           />
         )}  */}
       </TaskList>
-
+      
       {openModal && (
         <Modal>
           <TaskForm addTask={addTask} setOpenModal={setOpenModal} />
         </Modal>
+        
       )}
 
       <CreateTaskButton setOpenModal={setOpenModal} />
+      <ChangeAlertWithStorageListener sincronizeTasks={sincronizeTasks}/>
+      
     </div>
   );
 }

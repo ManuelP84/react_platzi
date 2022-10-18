@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useLocalStorage = (itemName, initialValue) => {
+  const [sinc, setSinc] = useState(true)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [item, setItem] = useState(initialValue);
@@ -25,12 +26,13 @@ const useLocalStorage = (itemName, initialValue) => {
           //console.log(item);  //Test
           setLoading(false);
           //console.log(loading)  //Test
+          setSinc(true)
         } catch (error) {
           setError(error);
         }
       }, 3000);
-    }, []);
-  
+    }, [sinc]); // Using the [] as the second parameter it only render once.
+
     const saveItem = (newItem) => {
       // Save in LocalSorage and update the state
       try {
@@ -40,12 +42,18 @@ const useLocalStorage = (itemName, initialValue) => {
         setError(error);
       }
     };
+
+    const sincronize = () => {
+      setLoading(true)
+      setSinc(false)
+    }
   
     return {
       item,
       saveItem,
       loading,
       error,
+      sincronize,
     };
   };
 
